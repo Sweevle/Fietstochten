@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class SC_PlatformTile : MonoBehaviour
 {
-    public Transform startPoint;
-    public Transform endPoint;
-    public GameObject[] obstacles; //Objects that contains different obstacle types which will be randomly activated
+    public float movingSpeed = 6;
+    public worldScript world;
+    private Transform arrow;
+    private Transform choiceTime; 
 
-    public void ActivateRandomObstacle()
+    // Start is called before the first frame update
+    void Start()
     {
-        DeactivateAllObstacles();
 
-        System.Random random = new System.Random();
-        int randomNumber = random.Next(0, obstacles.Length);
-        obstacles[randomNumber].SetActive(true);
+        arrow = gameObject.transform.Find("Arrow");
+        choiceTime = gameObject.transform.Find("ChoiceTime");
+        world = GameObject.Find("World").GetComponent<worldScript>();
     }
 
-    public void DeactivateAllObstacles()
+    // Update is called once per frame
+    void Update()
     {
-        for (int i = 0; i < obstacles.Length; i++)
-        {
-            obstacles[i].SetActive(false);
+        if (world.shouldMove){
+           arrow.transform.Translate(Vector3.back * Time.deltaTime * movingSpeed, Space.World);
         }
+        choiceTime.transform.Translate(Vector3.back * Time.deltaTime * movingSpeed, Space.World);
     }
+
+    
+
 }

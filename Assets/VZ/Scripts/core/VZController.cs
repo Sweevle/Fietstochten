@@ -1226,7 +1226,7 @@ public class VZController : MonoBehaviour
 
       // Setup transition canvas
       mTransitionCanvas = mNeck.Find("Head/TransitionCanvas").gameObject;
-      // mTransitionCanvas.SetActive(true);
+      mTransitionCanvas.SetActive(true);
 
       mTransitionCanvasPos = mTransitionCanvas.transform.localPosition;
       mTransitionCanvasRot = mTransitionCanvas.transform.localRotation;

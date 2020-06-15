@@ -244,7 +244,7 @@ public class VZPlayer : MonoBehaviour
       mInput.OnMenu = false;
 
       // Transition canvas
-      Controller.TransitionCanvas().GetComponent<Canvas>().enabled = false;
+      Controller.TransitionCanvas().GetComponent<Canvas>().enabled = true;
 
       // Offset raycast for terrain
       Transform raycastOrigin = transform.Find("RaycastOrigin");

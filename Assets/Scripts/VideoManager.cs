@@ -11,7 +11,6 @@ public class VideoManager : MonoBehaviour
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    // Update is called once per frame
     public void Play()
     {
         videoPlayer.Play();
