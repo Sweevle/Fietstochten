@@ -41,6 +41,8 @@ public class worldScript : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        var controller = VZPlayer.Controller;
+
         transitionCanvasActive = transitionCanvas.activeInHierarchy;
         if (!transitionCanvasActive){
             videoManager.Play();
@@ -53,6 +55,12 @@ public class worldScript : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 globalTime += Time.deltaTime;
                 timeText.text = globalTime.ToString("f0");
+
+                var speed = gameUI.transform.Find("Speed").GetComponent<Text>();
+                var distance = gameUI.transform.Find("Distance").GetComponent<Text>();
+                speed.text = (controller.InputSpeed * 3.6).ToString("f1");
+                distance.text = controller.EstimatedDistance.ToString("f1");
+                
             }
 
             if (elapsedTime > next_spawn_time){
