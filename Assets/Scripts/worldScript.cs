@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class worldScript : MonoBehaviour
 {
@@ -17,12 +18,15 @@ public class worldScript : MonoBehaviour
     public GameObject directionChoiceTile;
     public GameObject gameUI;
 
+    private VideoPlayer videoPlayer;
     public VideoManager videoManager;
     private AudioSource audioSource;
     
-    float next_spawn_time;
+    public float next_spawn_time;
     float first_spawn_time;
     GameObject transitionCanvas;
+    private float maxSpeed;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +34,23 @@ public class worldScript : MonoBehaviour
         transitionCanvas = GameObject.Find("TransitionCanvas");
         transitionCanvasActive = transitionCanvas.activeInHierarchy;
         audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
-        tutorialDone = true;
+        tutorialDone = false;
         shouldMove = true;
         fadedOut = false;
 
-        //elapsed time + directionchoice time from video
-        next_spawn_time = elapsedTime + 5.0f;
-        
+        videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+        // videoPlayer.url = "file://mnt/sdcard/Videos/1.mp4";
+        videoPlayer.Prepare();
+        // elapsed time + directionchoice time from video
+        if (tutorialDone == false){
+            next_spawn_time = elapsedTime + ((float)videoPlayer.clip.length - audioSource.clip.length - 10f);
+            // Debug.Log(next_spawn_time);
+        } else{
+            next_spawn_time = elapsedTime + ((float)videoPlayer.clip.length - 11f);
+            // Debug.Log(next_spawn_time);
+        }
+
+        // next_spawn_time = elapsedTime + 15f;
     }
 
     // Update is called once per frame
@@ -46,11 +60,24 @@ public class worldScript : MonoBehaviour
         transitionCanvasActive = transitionCanvas.activeInHierarchy;
         if (!transitionCanvasActive){
             videoManager.Play();
+
+            if (globalTime > 300f){
+
+                GlobalData.Instance.spins = controller.Spins;
+                GlobalData.Instance.speed = maxSpeed;
+                GlobalData.Instance.avgSpeed = 5.00f;
+                GlobalData.Instance.rpm = (controller.Spins / (elapsedTime / 60));
+                GlobalData.Instance.time = globalTime;
+                GlobalData.Instance.distance = controller.EstimatedDistance;
+
+                SceneManager.LoadScene("resultScreen");
+            }
+
             if (fadedOut == true){
                 videoManager.Pause();
             }
             
-            if (!audioSource.isPlaying && fadedOut == false){
+            if (fadedOut == false){
                 var timeText = gameUI.transform.Find("Time").GetComponent<Text>();
                 elapsedTime += Time.deltaTime;
                 globalTime += Time.deltaTime;
@@ -59,8 +86,11 @@ public class worldScript : MonoBehaviour
                 var speed = gameUI.transform.Find("Speed").GetComponent<Text>();
                 var distance = gameUI.transform.Find("Distance").GetComponent<Text>();
                 speed.text = (controller.InputSpeed * 3.6).ToString("f1");
-                distance.text = controller.EstimatedDistance.ToString("f1");
+                distance.text = controller.EstimatedDistance.ToString("f2");
                 
+                if ( (controller.InputSpeed * 3.6) > maxSpeed){
+                    maxSpeed = (float)(controller.InputSpeed * 3.6);
+                }
             }
 
             if (elapsedTime > next_spawn_time){
@@ -88,13 +118,13 @@ public class worldScript : MonoBehaviour
 
         audioSource.Play();
         Invoke("spawnDirectionChoiceTile", audioSource.clip.length);
-        next_spawn_time += 15.0f;
+        next_spawn_time += 60.0f;
         tutorialDone = true;
     }
 
     void skipTutorial(){
         spawnDirectionChoiceTile();
         //increment next_spawn_time
-        next_spawn_time += 15.0f;
+        next_spawn_time += 60.0f;
     }
 }

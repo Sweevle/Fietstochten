@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/resultScreen.unity
-    guid: 689aaabd95ea9ed47af6619f0c95fcbe
   - enabled: 1
     path: Assets/Scenes/LeanTest.unity
     guid: ccdd3bbedf922c0428990d905aa82895
+  - enabled: 1
+    path: Assets/Scenes/resultScreen.unity
+    guid: 689aaabd95ea9ed47af6619f0c95fcbe
   m_configObjects: {}

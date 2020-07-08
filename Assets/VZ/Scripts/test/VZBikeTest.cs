@@ -11,17 +11,22 @@ using System.Collections;
 public class VZBikeTest : MonoBehaviour
 {
    TextMesh mText;
-   GameObject canvas;
-   Text speed;
-   Text spins;
+
+   enum LicenseState
+   {
+      Init,
+      Setting,
+      Succeeded,
+      Failed,
+      Offline,
+      Unregistered,
+      NotActive
+   };
 
    void Start()
    {
       // Lookup text objects
       mText = GetComponent<TextMesh>();
-      canvas = GameObject.Find("CanvasUI");
-      speed = canvas.transform.Find("Speed").GetComponent<Text>();
-      spins = canvas.transform.Find("Spins").GetComponent<Text>();
    }
 
    void Update()
@@ -29,15 +34,61 @@ public class VZBikeTest : MonoBehaviour
       var controller = VZPlayer.Controller;
 
       mText.text = 
-         "Headrot: " + controller.HeadRot + "\n" +
-         "HeadLean: " + controller.HeadLean + "\n" +
-         "HeadBend: " + controller.HeadBend + "\n";
+         "Type: " + TypeText(controller.BikeType(), controller.BikeBetaVersion()) + "\n" +
+         "Connected: " + controller.IsBikeConnected() + "\n" +
+         "Licensed: " + controller.IsBikeLicensed() + "\n" +
+         "SenderAddress: " + controller.BikeSender() + "\n" +
+         "HeartRate: " + controller.HeartRate() + "\n" +
+         "BatteryVolts: " + controller.BatteryVolts() + "\n" +
+         "Speed: " + controller.InputSpeed + "\n" +
+         "Resistance: " + controller.UncalibratedResistance() + "\n" +
+         "LeftGrip: " + GripText(controller.LeftButton.Down, controller.DpadUp.Down, controller.DpadDown.Down, controller.DpadLeft.Down, controller.DpadRight.Down) + "\n" +
+         "RightGrip: " + GripText(controller.RightButton.Down, controller.RightUp.Down, controller.RightDown.Down, controller.RightLeft.Down, controller.RightRight.Down) + "\n" +
+         "Difficulty: " + VZPlayer.Instance.GetDifficulty();
 
-      spins.text = controller.Spins + " spins";
-      speed.text = controller.InputSpeed + " m/s";
+      if (controller.RightButton.Released())
+      {
+         int difficulty = VZPlayer.Instance.GetDifficulty() + 1;
+         if (difficulty > 8)
+            difficulty = 1;
+         VZPlayer.Instance.SetDifficulty(difficulty);
+      }
    }
 
+   string TypeText(int type, int version)
+   {
+      if (type < 0)
+         return "none";
+      else if (type == 0)
+         return "unsupported bike";
+      else if (type == 1)
+         return "alpha bike";
+      else if (type == 2)
+      {
+         if (version == 2)
+            return "bike sensor";
+         else
+            return "beta bike";
+      }
+      else
+         return "unknown";
+   }
 
+   string GripText(bool trigger, bool up, bool down, bool left, bool right)
+   {
+      string text = "";
 
+      if (trigger)
+         text += "trigger ";
+      if (up)
+         text += "up ";
+      if (down)
+         text += "down ";
+      if (left)
+         text += "left ";
+      if (right)
+         text += "right ";
 
+      return text;
+   }
 }

@@ -1221,7 +1221,7 @@ public class VZController : MonoBehaviour
       // Neck/camera/head setup
       mNeck = transform.Find("Neck");
       mCameraOffset = mNeck.Find("CameraOffset");
-      mCamera = mCameraOffset.Find("Camera");
+      mCamera = GameObject.Find("MainCamera").transform;
       Head = mNeck.Find("Head");
 
       // Setup transition canvas

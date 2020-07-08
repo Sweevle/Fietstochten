@@ -475,11 +475,11 @@ public class VZPlayer : MonoBehaviour
             mRigidbody.velocity = record.playerVelocity;
             mBodyRot = record.bodyRot;
 
-            if (VZReplay.Instance.OverridePlayer)
-            {
-               transform.position = record.playerPosition;
-               transform.rotation = record.playerRotation;
-            }
+            // if (VZReplay.Instance.OverridePlayer)
+            // {
+            //    transform.position = record.playerPosition;
+            //    transform.rotation = record.playerRotation;
+            // }
          }
       }
 #endif

@@ -53,11 +53,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\attachToCamera.cs" />
      <Compile Include="Assets\Scripts\BikeText.cs" />
+     <Compile Include="Assets\Scripts\changeScreen.cs" />
      <Compile Include="Assets\Scripts\ChoiceText.cs" />
      <Compile Include="Assets\Scripts\DirectionChoice.cs" />
      <Compile Include="Assets\Scripts\fadePanel.cs" />
+     <Compile Include="Assets\Scripts\GlobalData.cs" />
+     <Compile Include="Assets\Scripts\moveCamera.cs" />
      <Compile Include="Assets\Scripts\SC_PlatformTile.cs" />
+     <Compile Include="Assets\Scripts\setValues.cs" />
      <Compile Include="Assets\Scripts\text.cs" />
      <Compile Include="Assets\Scripts\VideoManager.cs" />
      <Compile Include="Assets\Scripts\worldScript.cs" />
@@ -646,6 +651,14 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.0f2/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Oculus.VR.Editor.csproj">
+      <Project>{6AB4B699-15D5-623F-A37F-B9646846542C}</Project>      <Name>Oculus.VR.Editor</Name>    </ProjectReference>
+    <ProjectReference Include="Oculus.VR.Scripts.Editor.csproj">
+      <Project>{EF9B64B9-B178-2D7D-D0E5-50A43BBCAE81}</Project>      <Name>Oculus.VR.Scripts.Editor</Name>    </ProjectReference>
+    <ProjectReference Include="Oculus.VR.csproj">
+      <Project>{AE2E1537-F1DC-01F9-2B31-FE19E4322700}</Project>      <Name>Oculus.VR</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
