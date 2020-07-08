@@ -57,11 +57,8 @@
      <Compile Include="Assets\Scripts\changeScreen.cs" />
      <Compile Include="Assets\Scripts\ChoiceText.cs" />
      <Compile Include="Assets\Scripts\DirectionChoice.cs" />
-     <Compile Include="Assets\Scripts\fadePanel.cs" />
-     <Compile Include="Assets\Scripts\GlobalData.cs" />
      <Compile Include="Assets\Scripts\moveCamera.cs" />
      <Compile Include="Assets\Scripts\SC_PlatformTile.cs" />
-     <Compile Include="Assets\Scripts\setValues.cs" />
      <Compile Include="Assets\Scripts\text.cs" />
      <Compile Include="Assets\Scripts\VideoManager.cs" />
      <Compile Include="Assets\Scripts\worldScript.cs" />
