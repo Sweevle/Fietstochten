@@ -48,33 +48,13 @@ public class DirectionChoice : MonoBehaviour
             if (direction == "Left"){
                 Debug.Log("direction is left and video is: " + vName);
                 switch (vName){
-                    case "1":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "4.mp4");
-                        world.next_spawn_time = 52f;
-                        break;
                     case "2":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "5.mp4");
-                        world.next_spawn_time = 38f;
+                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "3.mp4");
+                        world.next_spawn_time = 51f - 15f;
                         break;
                     case "4":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "13.mp4");
-                        world.next_spawn_time = 111f;
-                        break;
-                    case "5":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "8.mp4");
-                        world.next_spawn_time = 134f;
-                        break;
-                    case "6":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "9.mp4");
-                        world.next_spawn_time = 33f;
-                        break;
-                    case "8":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "2.mp4");
+                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "5.mp4");
                         world.next_spawn_time = 90f;
-                        break;
-                    case "9":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "6.mp4");
-                        world.next_spawn_time = 5f;
                         break;
                     default:
                         break;
@@ -84,37 +64,9 @@ public class DirectionChoice : MonoBehaviour
             else if (direction == "Right"){
                 Debug.Log("direction is right and video is: " + vName);
                 switch (vName){
-                    case "1":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "2.mp4");
-                        world.next_spawn_time = 93f;
-                        break;
                     case "3":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "9.mp4");
-                        world.next_spawn_time = 33f;
-                        break;
-                    case "4":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "12.mp4");
-                        world.next_spawn_time = 6f;
-                        break;
-                    case "5":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "7.mp4");
-                        world.next_spawn_time = 44f;
-                        break;
-                    case "7":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "5.mp4");
-                        world.next_spawn_time = 38f;
-                        break;
-                    case "8":
                         videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "4.mp4");
-                        world.next_spawn_time = 52f;
-                        break;
-                    case "9":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "10.mp4");
-                        world.next_spawn_time = 79f;
-                        break;
-                    case "10":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "3.mp4");
-                        world.next_spawn_time = 111f;
+                        world.next_spawn_time = 22f - 15f;
                         break;
                     default:
                         break;
@@ -126,30 +78,8 @@ public class DirectionChoice : MonoBehaviour
                 //play video straight
                 switch (vName){
                     case "1":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "3.mp4");
-                        world.next_spawn_time = 111f;
-                        break;
-                    case "2":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "6.mp4");
-                        world.next_spawn_time = 5f;
-                        break;
-                    case "3":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "7.mp4");
-                        world.next_spawn_time = 44f;
-                        break;
-                    case "6":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "8.mp4");
-                        world.next_spawn_time = 134f;
-                        break;
-                    case "7":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "10.mp4");
-                        world.next_spawn_time = 79f;
-                        break;
-                    case "10":
-                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "4.mp4");
-                        world.next_spawn_time = 52f;
-                        break;
-                    default:
+                        videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "2.mp4");
+                        world.next_spawn_time = 93f -15f;
                         break;
                 }
                 // fadeUI.Fade();
@@ -176,7 +106,7 @@ public class DirectionChoice : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        Debug.Log(triggered = "No longer in contact and direction is " + direction);
+        Debug.Log(triggered = "No longer in contact");
         
         // stop measuring
         StopCoroutine(mL);
@@ -199,16 +129,24 @@ public class DirectionChoice : MonoBehaviour
 
         while ( measuring ){
             var controller = VZPlayer.Controller;
+            
 
+            // if (controller.HeadRot > f1){
+            //     direction = "Left";
+            //     directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
+            // } else if (controller.HeadRot < f2){
+            //     direction = "Right";
+            //     directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
+            // } else {
+            //     direction = "Straight";
+            //     directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
+            // }
             //Based on the name of the video it will show the directions it can go and change the arrow accordingly.
             switch (vName){
                 case "1":
                     if (controller.HeadRot > f1){
                         direction = "Left";
                         directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
-                    } else if (controller.HeadRot < f2){
-                        direction = "Right";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
                     } else {
                         direction = "Straight";
                         directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
@@ -224,12 +162,12 @@ public class DirectionChoice : MonoBehaviour
                     }
                     break;
                 case "3":
-                    if (controller.HeadRot < f2){
+                    if (controller.HeadRot > f1){
+                        direction = "Left";
+                        directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
+                    } else if (controller.HeadRot < f2){
                         direction = "Right";
                         directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
-                    } else {
-                        direction = "Straight";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
                     }
                     break;
                 case "4":
@@ -244,70 +182,6 @@ public class DirectionChoice : MonoBehaviour
                             direction = "Right";
                         else
                             direction = "Left";
-                    }
-                    break;
-                case "5":
-                    if (controller.HeadRot > f1){
-                        direction = "Left";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
-                    } else if (controller.HeadRot < f2){
-                        direction = "Right";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
-                    } else {
-                        if(Random.value<0.5f)
-                            direction = "Right";
-                        else
-                            direction = "Left";
-                    }
-                    break;
-                case "6":
-                    if (controller.HeadRot > f1){
-                        direction = "Left";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
-                    } else {
-                        direction = "Straight";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
-                    }
-                    break;
-                case "7":
-                    if (controller.HeadRot < f2){
-                        direction = "Right";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
-                    } else {
-                        direction = "Straight";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
-                    }
-                    break;
-                case "8":
-                    if (controller.HeadRot > f1){
-                        direction = "Left";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
-                    } else {
-                        direction = "Straight";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
-                    }
-                    break;
-                case "9":
-                    if (controller.HeadRot > f1){
-                        direction = "Left";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = leftArrow;
-                    } else if (controller.HeadRot < f2){
-                        direction = "Right";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
-                    } else {
-                        if(Random.value<0.5f)
-                            direction = "Right";
-                        else
-                            direction = "Left";
-                    }
-                    break;
-                case "10":
-                    if (controller.HeadRot < f2){
-                        direction = "Right";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = rightArrow;
-                    } else {
-                        direction = "Straight";
-                        directionArrow.GetComponent<SpriteRenderer>().sprite = defaultArrow;
                     }
                     break;
                 default:
@@ -330,7 +204,7 @@ public class DirectionChoice : MonoBehaviour
         // if there is a / in the file path it will be removed -- used on oculus go
         vName = vName.Replace("/", "");
         vName = vName.Replace(".mp4", "");
-        Debug.Log("videoname is: " + vName);
+        // Debug.Log("videoname is: " + vName);
     }
 
     

@@ -16,14 +16,12 @@ public class setValues : MonoBehaviour
         var spins = transform.Find("TotalSpins").GetComponent<Text>();
         var rpm = transform.Find("Rpm").GetComponent<Text>();
 
-
-
-        // time.text = GlobalData.Instance.time.ToString("f0");
-        // topSpeed.text = GlobalData.Instance.speed.ToString("f1");
-        // distance.text = GlobalData.Instance.distance.ToString("f2");
-        // spins.text = GlobalData.Instance.spins.ToString("f0");
-        // avgSpeed.text = GlobalData.Instance.avgSpeed.ToString("f1");
-        // rpm.text = GlobalData.Instance.rpm.ToString("f0");
+        time.text = GlobalData.Instance.time;
+        topSpeed.text = GlobalData.Instance.speed.ToString("f1");
+        distance.text = GlobalData.Instance.distance.ToString("f2");
+        spins.text = GlobalData.Instance.spins.ToString("f0");
+        avgSpeed.text = GlobalData.Instance.avgSpeed.ToString("f1");
+        rpm.text = GlobalData.Instance.rpm.ToString("f0");
     }
 
     // Update is called once per frame

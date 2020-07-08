@@ -18,6 +18,7 @@ public class worldScript : MonoBehaviour
     public bool fadedOut;
     public Text currentMinutes;
     public Text currentSeconds;
+    public AudioClip bells;
     
     public GameObject directionChoiceTile;
     public GameObject gameUI;
@@ -52,10 +53,11 @@ public class worldScript : MonoBehaviour
         // check if the tutorial needs to be played, if yes then also take that in account for when the
         // first spawn time is for the direction choice
         if (tutorialDone == false){
-            next_spawn_time = elapsedTime + (34f - audioSource.clip.length - 10f);
+            next_spawn_time = elapsedTime + (41f - 26f - 10f);
+            // next_spawn_time = 0f;
             // Debug.Log(next_spawn_time);
         } else{
-            next_spawn_time = elapsedTime + (34f - 11f);
+            next_spawn_time = elapsedTime + (41f - 15f);
             // Debug.Log(next_spawn_time);
         }
     }
@@ -71,24 +73,24 @@ public class worldScript : MonoBehaviour
 
 
             // if the time reaches 5 minutes stop the tour, save the data and go to the result screen
-            if (globalTime > 300f){
+            if (globalTime > 217f){
                 string minutes = Mathf.Floor((int)globalTime / 60).ToString("00");
                 string seconds = ((int)globalTime % 60).ToString("00");
 
                 GlobalData.Instance.spins = controller.Spins;
                 GlobalData.Instance.speed = maxSpeed;
                 GlobalData.Instance.avgSpeed = 5.00f;
-                GlobalData.Instance.rpm = (controller.Spins / (elapsedTime / 60));
+                GlobalData.Instance.rpm = (controller.Spins / (Mathf.Floor((int)globalTime / 60)));
                 GlobalData.Instance.time = minutes + " : " + seconds;
                 GlobalData.Instance.distance = controller.EstimatedDistance;
-
+                
                 SceneManager.LoadScene("resultScreen");
             }
 
 
             // when transitioning to another video pause the video
             if (fadedOut == true){
-                videoManager.Pause();
+                // videoManager.Pause();
             }
             
             // set and update the data shown in the bar during the tour
@@ -143,8 +145,10 @@ public class worldScript : MonoBehaviour
     // play the audio tutorial and after spawn the object.
     // set the tutorial boolean to true
     void playTutorial(){
-        audioSource.Play();
-        Invoke("spawnDirectionChoiceTile", audioSource.clip.length);
+        var time = audioSource.clip.length;
+
+        StartCoroutine(playtutorialSound());
+        Invoke("spawnDirectionChoiceTile", 26f);
         next_spawn_time += 60.0f;
         tutorialDone = true;
     }
@@ -152,8 +156,19 @@ public class worldScript : MonoBehaviour
 
     // if the tutorial has been done, spawn object immediately.
     void skipTutorial(){
-        spawnDirectionChoiceTile();
+        audioSource.Play();
+        Invoke("spawnDirectionChoiceTile", audioSource.clip.length);
+
         //increment next_spawn_time
         next_spawn_time += 60.0f;
     }
+
+    IEnumerator playtutorialSound()
+         {
+             audioSource.Play();
+             yield return new WaitForSeconds(audioSource.clip.length);
+             audioSource.volume = 0.4f;
+             audioSource.clip = bells;
+             audioSource.Play();
+         }
 }

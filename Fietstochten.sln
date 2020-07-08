@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oculus.VR", "Oculus.VR.csproj", "{AE2E1537-F1DC-01F9-2B31-FE19E4322700}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{30A7F692-9C68-9C6B-0382-ADF1B67ADF70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oculus.VR", "Oculus.VR.csproj", "{AE2E1537-F1DC-01F9-2B31-FE19E4322700}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oculus.VR.Scripts.Editor", "Oculus.VR.Scripts.Editor.csproj", "{EF9B64B9-B178-2D7D-D0E5-50A43BBCAE81}"
 EndProject
@@ -15,14 +15,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30A7F692-9C68-9C6B-0382-ADF1B67ADF70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30A7F692-9C68-9C6B-0382-ADF1B67ADF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30A7F692-9C68-9C6B-0382-ADF1B67ADF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30A7F692-9C68-9C6B-0382-ADF1B67ADF70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2E1537-F1DC-01F9-2B31-FE19E4322700}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF9B64B9-B178-2D7D-D0E5-50A43BBCAE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF9B64B9-B178-2D7D-D0E5-50A43BBCAE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF9B64B9-B178-2D7D-D0E5-50A43BBCAE81}.Release|Any CPU.ActiveCfg = Release|Any CPU

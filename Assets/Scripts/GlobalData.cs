@@ -10,7 +10,7 @@ public class GlobalData : MonoBehaviour
     public float speed;
     public float avgSpeed;
     public float rpm;
-    public float time;
+    public string time;
     public float distance;
 
     void Awake ()   
