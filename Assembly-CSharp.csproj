@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\attachToCamera.cs" />
      <Compile Include="Assets\Scripts\BikeText.cs" />
      <Compile Include="Assets\Scripts\changeScreen.cs" />
      <Compile Include="Assets\Scripts\ChoiceText.cs" />
