@@ -24,6 +24,7 @@ public class DirectionChoice : MonoBehaviour
     public Sprite leftArrow;
     public Sprite rightArrow;
     public Sprite defaultArrow;
+    public LevelLoader vidtransition;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,7 @@ public class DirectionChoice : MonoBehaviour
             world.fadedOut = true;
             world.elapsedTime = 0;
 
-
+            vidtransition.LoadNextVideo();
             // based on the current video and the chosen direction set the new video and next spawn time of direction choice
             if (direction == "Left"){
                 Debug.Log("direction is left and video is: " + vName);

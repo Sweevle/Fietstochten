@@ -1048,7 +1048,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: '00 : 00'
 --- !u!222 &730096647
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1184,14 +1184,14 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: file://mnt/sdcard/Videos/1.mp4
+  m_Url: 
   m_EnabledAudioTracks: 00
   m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
@@ -1279,7 +1279,6 @@ MonoBehaviour:
   leftArrow: {fileID: 21300000, guid: b1f27f83c988e154d83d91a5d45447c1, type: 3}
   rightArrow: {fileID: 21300000, guid: d2cb3d9631957b3489f03524cecbcac9, type: 3}
   defaultArrow: {fileID: 21300000, guid: 2c31ecf3e72bd8a48b82ee929188e1c2, type: 3}
-  skybox: {fileID: 2100000, guid: 2ecd6afe385921f4a8741ae5d6b1ab19, type: 2}
 --- !u!1 &949071162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,15 +1977,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elapsedTime: 0
   globalTime: 0
+  next_spawn_time: 0
   transitionCanvasActive: 1
   tutorialDone: 0
   shouldMove: 1
   fadedOut: 0
+  currentMinutes: {fileID: 0}
+  currentSeconds: {fileID: 0}
   directionChoiceTile: {fileID: 6880218977749227427, guid: ea50709c0e4ebe24cb6d251565804046,
     type: 3}
   gameUI: {fileID: 1556892245}
   videoManager: {fileID: 894881534}
-  next_spawn_time: 0
 --- !u!4 &2037814470
 Transform:
   m_ObjectHideFlags: 0

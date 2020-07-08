@@ -16,6 +16,8 @@ public class worldScript : MonoBehaviour
     public bool tutorialDone;
     public bool shouldMove;
     public bool fadedOut;
+    public Text currentMinutes;
+    public Text currentSeconds;
     
     public GameObject directionChoiceTile;
     public GameObject gameUI;
@@ -70,12 +72,14 @@ public class worldScript : MonoBehaviour
 
             // if the time reaches 5 minutes stop the tour, save the data and go to the result screen
             if (globalTime > 300f){
+                string minutes = Mathf.Floor((int)globalTime / 60).ToString("00");
+                string seconds = ((int)globalTime % 60).ToString("00");
 
                 GlobalData.Instance.spins = controller.Spins;
                 GlobalData.Instance.speed = maxSpeed;
                 GlobalData.Instance.avgSpeed = 5.00f;
                 GlobalData.Instance.rpm = (controller.Spins / (elapsedTime / 60));
-                GlobalData.Instance.time = globalTime;
+                GlobalData.Instance.time = minutes + " : " + seconds;
                 GlobalData.Instance.distance = controller.EstimatedDistance;
 
                 SceneManager.LoadScene("resultScreen");
@@ -92,7 +96,13 @@ public class worldScript : MonoBehaviour
                 var timeText = gameUI.transform.Find("Time").GetComponent<Text>();
                 elapsedTime += Time.deltaTime;
                 globalTime += Time.deltaTime;
-                timeText.text = globalTime.ToString("f0");
+                
+                string minutes = Mathf.Floor((int)globalTime / 60).ToString("00");
+                string seconds = ((int)globalTime % 60).ToString("00");
+                                
+                timeText.text = minutes + " : " + seconds;
+
+
 
                 var speed = gameUI.transform.Find("Speed").GetComponent<Text>();
                 var distance = gameUI.transform.Find("Distance").GetComponent<Text>();
